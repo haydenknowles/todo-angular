@@ -27,7 +27,6 @@ export class TodoDataService {
 
   // POST /api/todoitems
   addTodo(todo: Todo): Observable<Todo> {
-	console.log("addTodo: " + this.myAppUrl);
     return this.http.post<Todo>(this.myAppUrl + this.myApiUrl, JSON.stringify(todo), this.httpOptions)
     .pipe(
       retry(1),
@@ -46,9 +45,6 @@ export class TodoDataService {
 
   // PUT /api/todoitems/:id
   updateTodo(id: number, values: Object = {}): Observable<Todo> {
-	console.log("updateTodo");
-	console.log(values);
-	console.log(this.myAppUrl + this.myApiUrl + id);
     return this.http.put<Todo>(this.myAppUrl + this.myApiUrl + id, JSON.stringify(values), this.httpOptions)
     .pipe(
       retry(1),
@@ -58,7 +54,6 @@ export class TodoDataService {
 
   // GET /api/todoitems
   getAllTodos(): Observable<Todo[]> {
-	console.log("getAllTodos: " + this.myAppUrl);
     return this.http.get<Todo[]>(this.myAppUrl + this.myApiUrl)
       .pipe(
         retry(1),
@@ -69,7 +64,6 @@ export class TodoDataService {
 
   // GET /api/todoitems/:id
   getTodo(id: number): Observable<Todo> {
-	console.log("getTodo: " + this.myAppUrl);
     return this.http.get<Todo>(this.myAppUrl + this.myApiUrl + id)
     .pipe(
       retry(1),
@@ -79,8 +73,6 @@ export class TodoDataService {
 
   // Toggle todo complete
   toggleTodoCompleted(todo: Todo){
-	console.log("toggleTodoCompleted: " + this.myAppUrl + this.myApiUrl)
-
     return this.http.put<Todo>(this.myAppUrl + this.myApiUrl + todo.id, JSON.stringify({
 	  id: todo.id,
 	  title: todo.title,
